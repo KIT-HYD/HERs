@@ -21,12 +21,12 @@ See HER.m
 
 ### HER
 
-The script is divided in 7 sections:
+The main (sHER_E_0X_Y_Jura_struct.m) script is divided in the following sections:
 
 __1. Load dataset__
 	Loads the dataset.
 	
-__2. Define infogram and Geo3 properties__
+__2. Define infogram and HER3 properties__
 	Definition of the infogram properties, aggregation method, z threshold (optional).
 	
 __3. HER1: Spatial characterization__
@@ -38,17 +38,19 @@ __4. HER2: Weight optimization__
 __5. HER3: z PMF prediction__
 	Applies spatial characterization and optimal weights for PMF prediction. ```f_her_predict.m```
 	
-__6. HER4: Sequential Simulation__
+__6. HERs4: Sequential Simulation__
 Applies spatial characterization and optimal weights for PMF prediction. ```f_her_predict.m```
-	
-__7. Extract PMF statistics__
+
+The sHER_E_0304_Extract_pmf_statistics_performance_and_plot.m script extract PMF statistics, calculate performance, and plot maps. It is composed by:
+
+__1. Extract PMF statistics__
 	Obtains mean, median, mode and probability of a z threshold (optional) of the predicted z PMFs and plots the results.
 
-__8. Calculate performance metrics__
+__2. Calculate performance metrics__
 	Calculates Root Mean Square Error (RMSE), Mean Error (ME), Mean Absolute Error (MAE), Nash-Sutcliffe model efficiency and scoring rule (DKL) of the validation set.  
 	
-__9. Clear__
-	Clears intermediate variables.
+__3. Plot maps
+
 
 ### Functions
 

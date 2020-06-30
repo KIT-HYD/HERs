@@ -2,7 +2,7 @@
 %   HER1: Spatial correlation structure ("her" structure cointaining model definitions)
 %   HER2: Optimization ("her")
 %   HER3: Prediction ("pmf_pred" structure containing the pmf predictions)
-%  sHER4: Sequential simulation ("pmf_realiz" structure containing realizations)
+%   HERs4: Sequential simulation ("pmf_realiz" structure containing realizations)
 
 % Version
 % 04: Version using the DKL optimization for a threshold in a CDF + isotropic nugget
@@ -28,6 +28,11 @@ her.z_thresh = log10(50); %DEFINE z threshold for the probability map. [] if no 
 %to be used in HER3 step (no need to run HER1 and HER2 parts when you change it)
 her.aggregation_type = 'andor';  %DEFINE the aggregation method
 
+%to avoid numerical problems
+z = round(z,5);
+z_cal = round(z_cal,5);
+z_val = round(z_val,5);
+her.z_thresh = round(her.z_thresh,5);
 %% HER1: Spatial Characterization
 her = f_her1_infogram(x_cal, y_cal, z_cal, her);
 
@@ -47,7 +52,7 @@ f_plot_weights(her);
 pmf_pred_grid.x_target = round(pmf_pred_grid.x_target,2); pmf_pred_grid.y_target = round(pmf_pred_grid.y_target,2);
 [pmf_pred_grid.pmf_pred, pmf_pred_grid.idx_zero_neigh_pred] = f_her3_predict(x_cal, y_cal, z_cal, pmf_pred_grid.x_target(:), pmf_pred_grid.y_target(:), her);
 
-%% sHER4: Sequential simulation | Spatial uncertainty
+%% HERs4: Sequential simulation | Spatial uncertainty
 % Monte Carlo simulation + sequential simulation using HER model
 
 % GRID for ploting results
@@ -55,7 +60,7 @@ pmf_simul_grid.nsim = 1; %define the number of simulations
 [pmf_simul_grid.x_target,pmf_simul_grid.y_target] = meshgrid(0:0.05:6, 0:0.05:6); %DEFINE a GRID for predicting and ploting results
 pmf_simul_grid.x_target = round(pmf_simul_grid.x_target,2); pmf_simul_grid.y_target = round(pmf_simul_grid.y_target,2);
     for i = 1:pmf_simul_grid.nsim
-        z_realiz_ = f_her4_sHER(x_cal, y_cal, z_cal, pmf_simul_grid.x_target(:), pmf_simul_grid.y_target(:), her);
+        z_realiz_ = f_her4_HERs(x_cal, y_cal, z_cal, pmf_simul_grid.x_target(:), pmf_simul_grid.y_target(:), her);
         pmf_simul_grid.z_realiz(:,:,i) =reshape(z_realiz_, size(pmf_simul_grid.x_target,1), size(pmf_simul_grid.y_target,2));
         i
     end
@@ -63,7 +68,7 @@ pmf_simul_grid.x_target = round(pmf_simul_grid.x_target,2); pmf_simul_grid.y_tar
 clear z_realiz_ i
 
 %% save
-filename = sprintf('sHER_E04_0_lag%s_bw%s_%s_nn%s_%s_dataset_%s.mat', num2str(round(her.lag_dist,2)), ...
+filename = sprintf('HERs_E04_0_lag%s_bw%s_%s_nn%s_%s_dataset_%s.mat', num2str(round(her.lag_dist,2)), ...
     num2str(round(her.binwidth,4)), num2str(round(her.binwidth_z,4)), num2str(round(her.n_neighbor,0)),...
     her.aggregation_type, her.txt)
 
