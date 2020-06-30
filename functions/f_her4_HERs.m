@@ -1,4 +1,4 @@
-function [z_realiz] = f_her4_sHER_NOnugget(x_cal, y_cal,z_cal, x_target, y_target, her)
+function [z_realiz] = f_her4_HERs(x_cal, y_cal,z_cal, x_target, y_target, her)
 %% function to generate a realization using Sequential Simulation and HER
 
 % -------------- Input --------------
@@ -18,12 +18,23 @@ function [z_realiz] = f_her4_sHER_NOnugget(x_cal, y_cal,z_cal, x_target, y_targe
 % -------------- Script --------------
     z_realiz = NaN(1,length(x_target));
     idx_ = randperm(length(x_target));
+    x_cal_ = x_cal;
+    y_cal_ = y_cal;
+    z_cal_ = z_cal;
     for i = 1:length(idx_)
-        [pmf, ~] = f_her3_predict_NOnugget(x_cal, y_cal, z_cal, x_target(idx_(i)), y_target(idx_(i)), her);
+        for j = 1:length(x_cal)
+            euc_distance_(j) = f_euclidean_dist(x_cal(j), y_cal(j), x_target(i), y_target(i)); %calculate the euclidean distance between cal. set and target
+        end
+        [dist_, idx_cal_] = min(euc_distance_);
+        if dist_ <= 10e-6 %honoring calibration set
+            z_realiz(idx_(i)) = z_cal(idx_cal_);
+        else
+        [pmf, ~] = f_her3_predict(x_cal, y_cal, z_cal, x_target(idx_(i)), y_target(idx_(i)), her);
         z_realiz(idx_(i)) = f_montecarlosim(cell2mat(pmf), her.edges_z); %Monte carlo Simulation
         x_cal = [x_cal; x_target(idx_(i))]; %sequentially including the simulated value as data
         y_cal = [y_cal; y_target(idx_(i))];
         z_cal = [z_cal; z_realiz(idx_(i))];
+        end
     end  
    
 end
