@@ -140,8 +140,8 @@ clear prob_thres_pred_ PMF_pred_ z_pred_ ylim idx_ z_predicted_sorted_ z_true_so
 
 % GRID
 k = 1;
-for i = 1:size(pmf_simul_grid.z_realiz,1) %extract PMF
-    for j = 1:size(pmf_simul_grid.z_realiz,2)
+for j = 1:size(pmf_simul_grid.z_realiz,2) %extract PMF
+    for i = 1:size(pmf_simul_grid.z_realiz,1)
         realiz_ = reshape(pmf_simul_grid.z_realiz(i,j,:), [1, size(pmf_simul_grid.z_realiz,3)]); %flatten matrix
 %         n_pairs_by_bin_ = histcounts(realiz_,her.edges_z);
         pmf_realiz_ = histcounts(realiz_,her.edges_z,'Normalization', 'probability');
