@@ -23,12 +23,8 @@ function [G, ksi_fraction, edges_interv, interv_size] = f_G(pmf_pred_nn, edges_z
         interv_size(i) = edges_interv(i,2)-edges_interv(i,1);
         for target_ = 1:numel(z_true)            
             cmf_ = round([0 cumsum(pmf_pred_nn{target_})],2);
-            idx_  = find(cmf_ >= edges_interv(i,1), 1); %1st edge of the interval
-            if idx_ == 1
-                z_1s_ = edges_z(idx_);      
-            else
-                z_1s_ = edges_z(idx_-1); %left edge
-            end
+            idx_  = find(cmf_ > edges_interv(i,1), 1); %1st edge of the interval
+            z_1s_ = edges_z(idx_-1); %left edge
             
             idx_  = find(cmf_ >= edges_interv(i,2), 1); %2nd edge of the interval
 %             if idx_ == numel(edges_z)
@@ -51,9 +47,6 @@ function [G, ksi_fraction, edges_interv, interv_size] = f_G(pmf_pred_nn, edges_z
             w_(i) = -2;
         end            
     end
-    for k = 1:length(w_)
-        a_ = sum( w_(k) * abs(ksi_fraction(k) - interv_size(k)) ) / length(k);
-    end
-        G = 1 - a_;
+    G = 1 - sum(w_ .* (ksi_fraction - interv_size)) / length(w_);
 end
 
