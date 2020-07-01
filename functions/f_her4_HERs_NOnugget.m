@@ -23,7 +23,7 @@ function [z_realiz] = f_her4_HERs_NOnugget(x_cal, y_cal,z_cal, x_target, y_targe
     z_cal_ = z_cal;
     for i = 1:length(idx_)
         for j = 1:length(x_cal)
-            euc_distance_(j) = f_euclidean_dist(x_cal(j), y_cal(j), x_target(i), y_target(i)); %calculate the euclidean distance between cal. set and target
+            euc_distance_(j) = f_euclidean_dist(x_cal(j), y_cal(j), x_target(idx_(i)), y_target(idx_(i))); %calculate the euclidean distance between cal. set and target
         end
         [dist_, idx_cal_] = min(euc_distance_);
         if dist_ <= 10e-6 %honoring calibration set
