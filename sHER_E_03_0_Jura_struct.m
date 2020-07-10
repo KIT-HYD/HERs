@@ -16,7 +16,8 @@ addpath('1.0.raw data');
 
 load Jura_dataset_Pb_log10.mat %1- 'Argovian'; 2- 'Kimmeridgian'; 3- 'Sequanian'; 4- 'Portlandian'; 5- 'Quaternary'
 shp_basin = shaperead('jura_basin.shp');
-her.txt = txt; %dataset identification
+her.txt = txt;              %dataset identification
+her.dim_cal = dim_cal;      %dimension of the calibration set
 
 %% Define infogram properties and aggregation method
 her.lag_dist = 0.07; % DEFINE the class size (lag width in meters if the input x,y is given in meters)

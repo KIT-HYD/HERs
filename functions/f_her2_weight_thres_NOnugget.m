@@ -157,7 +157,11 @@ beta = alpha;
 pmf_alpha_beta_nn = cell(length(alpha),length(z_cal)); %cell for the predicted z PMFs (row=set of weights, column=target)
 
 % finding the closest ones
-her.n_neighbor_aggreg = her.n_neighbor - 1;
+if her.n_neighbor == her.dim_cal
+    her.n_neighbor_aggreg = her.n_neighbor - 1;
+else 
+    her.n_neighbor_aggreg = her.n_neighbor;
+end
 
 her.idx_opt_nn = NaN(her.n_neighbor_aggreg,length(z_cal));
 mat_euc_distance_xy_nn = NaN(her.n_neighbor_aggreg,length(z_cal));

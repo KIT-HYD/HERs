@@ -19,7 +19,8 @@ addpath('1.0.raw data');
 
 load Jura_dataset_Pb_log10.mat %1- 'Argovian'; 2- 'Kimmeridgian'; 3- 'Sequanian'; 4- 'Portlandian'; 5- 'Quaternary'
 shp_basin = shaperead('jura_basin.shp');
-her.txt = txt; %dataset identification
+her.txt = txt;              %dataset identification
+her.dim_cal = dim_cal;      %dimension of the calibration set
 
 %to avoid numerical problems
 z = round(z,5);
