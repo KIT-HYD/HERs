@@ -1,4 +1,4 @@
-# HER: 
+# HER addaptation for categorical data and probability maps: 
 HER method,including sequential simulation (HERs).
 
 ## License agreement
