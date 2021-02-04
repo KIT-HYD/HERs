@@ -1,5 +1,5 @@
-# sHER: 
-HER method,including sequential simulation.
+# HER: 
+HER method,including sequential simulation (HERs).
 
 ## License agreement
 
