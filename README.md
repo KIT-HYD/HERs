@@ -1,5 +1,9 @@
-# HER adaptation for categorical data and probability maps: 
-HER method,including sequential simulation (HERs).
+# HER adaptation for categorical data and probability maps and spatial simulation: 
+HER method addapted to dealing with categorical data and probability maps, also including sequential simulation (HERs).
+
+The code and datasets are complementary parts of the study proposed by Thiesen and Ehret (2021):
+
+>_Thiesen, S.; Ehret, U.: Assessing local and spatial uncertainty with nonparametric geostatistics, Stoch. Environ. Res. Risk. Assess. [preprint], https://doi.org/10.21203/rs.3.rs-272229/v1, in review, 2021._
 
 ## License agreement
 
