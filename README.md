@@ -3,7 +3,7 @@ HER method adapted for dealing with categorical data and probability maps, also 
 
 The code and datasets are complementary parts of the study proposed by Thiesen and Ehret (2021):
 
->_Thiesen, S.; Ehret, U.: Assessing local and spatial uncertainty with nonparametric geostatistics, Stoch. Environ. Res. Risk. Assess. [preprint], https://doi.org/10.21203/rs.3.rs-272229/v1, in review, 2021._
+>_Thiesen, S.; Ehret, U. Assessing local and spatial uncertainty with nonparametric geostatistics, Stoch. Environ. Res. Risk. Assess. [preprint], https://doi.org/10.21203/rs.3.rs-272229/v1, in review, 2021._
 
 ## License agreement
 
