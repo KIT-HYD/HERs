@@ -1,5 +1,5 @@
 # HER adaptation for categorical data and probability maps and spatial simulation: 
-HER method addapted to dealing with categorical data and probability maps, also including sequential simulation (HERs).
+HER method adapted for dealing with categorical data and probability maps, also including sequential simulation (HERs).
 
 The code and datasets are complementary parts of the study proposed by Thiesen and Ehret (2021):
 
